@@ -1,30 +1,48 @@
 #include "sort.h"
 
 /**
-* bubble_sort - Function that sorts an array of numbers using the bubble sort algorithm
-* @array: array of numbers to be reordered
-* @size: size of the array
-*
-* Return: void
-*/
+ * swap - swap two elements in array
+ * @array: element of array to swap
+ * @array2: element of array to swap
+ */
+void swap(int *array, int *array2)
+{
+	int tmp;
 
+	tmp = *array;
+	*array = *array2;
+	*array2 = tmp;
+}
+
+/**
+ * bubble_sort - sort array
+ * @array: address array
+ * @size: size of array
+ */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, m;
-	int temp, swap;
+	size_t n, i, j;
+	/*int tmp;*/
 
-	for (m = size, swap = 1; m > 0 && swap; m--)
+	if (size <= 0 || array == NULL)
+		return;
+
+	n = size;
+	for (i = 0; i < (n - 1); i++)
 	{
-		swap = 0;
-		for (i = 0; (i + 1) < m; i++)
+		for (j = 0; j < (n - 1); j++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[j] < array[j + 1])
+				continue;
+			else
 			{
-				temp = array[i + 1];
-				array[i + 1] = array[i];
-				array[i] = temp;
+				if (array[j] == array[j + 1])
+					break;
+				swap(&array[j], &array[j + 1]);
+				/*tmp = array[j];*/
+				/*array[j] = array[j + 1];*/
+				/*array[j + 1] = tmp;*/
 				print_array(array, size);
-				swap = 1;
 			}
 		}
 	}
